@@ -8,13 +8,24 @@ import matrix.matrixException.*;
 
 import ring.modInt.ModInt_M;
 
+/**
+ * A class used for encrypting and decrypting messages using a custom matrix cipher
+ * @author Noah Kime
+ */
 public class MatrixCipher extends VigenereCipher {
 		
+	/**
+	 * Creates a new MatrixCipher with random parameters over a given Alphabet
+	 * @param alph
+	 */
 	public MatrixCipher(Alphabet alph) {
 		super(alph);
 	} //END MatrixCipher
 	
 	
+	/**
+	 * Randomly generates the multiplicative parameter, a, using the given Alphabet size
+	 */
 	protected void setA() {
 		try { this.a = new GLn_Zm(getNonSingular()); }
 		catch (InvalidDimException|InvalidDetException e) {
@@ -23,6 +34,13 @@ public class MatrixCipher extends VigenereCipher {
 	}
 	
 	
+	
+	/**
+	 * Generates a random nonsingular matrix uniformly using a modified algorithm
+	 * Algorithm credit: Dana Randall, Efficient Generation of Nonsingular Matrices,
+	 * http://www.eecs.berkeley.edu/Pubs/TechRpts/1991/CSD-91-658.pdf
+	 * @return A random nonsingular matrix of ModInt_M
+	 */
 	private Grid<ModInt_M> getNonSingular() {
 		Grid<ModInt_M> mtxA = new Grid<ModInt_M>(cipherSize, cipherSize);
 		Grid<ModInt_M> mtxT = new Grid<ModInt_M>(cipherSize, cipherSize);
@@ -38,8 +56,18 @@ public class MatrixCipher extends VigenereCipher {
 				for (int k = 0; k < cipherSize; k++)
 					temp.set( i, j, temp.get(i, j).add(mtxA.get(i,k).mult(mtxT.get(k,j))) );
 		return temp;
-	}
+	} //END getNonSingular
 	
+	
+	/**
+	 * Recursively generates a random nonsingular matrix uniformly using a modified algorithm
+	 * Algorithm credit: Dana Randall, Efficient Generation of Nonsingular Matrices,
+	 * http://www.eecs.berkeley.edu/Pubs/TechRpts/1991/CSD-91-658.pdf
+	 * @param mtxA Matrix A
+	 * @param mtxT Matrix T
+	 * @param n	The size of this matrix minor
+	 * @param rand A random number generator
+	 */
 	private void genNonSingular(Grid<ModInt_M> mtxA, Grid<ModInt_M> mtxT, int n, Random rand) {
 		if (n == 1) {
 			int r = -1;
@@ -118,8 +146,13 @@ public class MatrixCipher extends VigenereCipher {
 
 			genNonSingular(mtxA, mtxT, n-1, rand);
 		}
-	}
+	} //END genNonSingular
 	
+	
+	/**
+	 * Initializes a given grid's entries to the additive inverse of the modA group
+	 * @param grid A given grid to be initialized
+	 */
 	private void initializeGrid(Grid<ModInt_M> grid) {
 		for (int i = 0; i < grid.getRows(); i++)
 			for (int j = 0; j < grid.getCols(); j++)

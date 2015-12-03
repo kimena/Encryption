@@ -6,6 +6,7 @@ import java.util.Random;
 import ring.modInt.*;
 
 /**
+ * A class used for encrypting and decrypting messages using an Affine cipher
  * @author Noah Kime
  */
 public class AffineCipher extends Cipher {
@@ -15,8 +16,9 @@ public class AffineCipher extends Cipher {
 	private ModInt_M b;
 	
 	
-	/**Creates a random AffineCipher over a given Alphabet
-	 * @param alph The given Alphabet
+	/**
+	 * Creates a new AffineCipher with random parameters over a given Alphabet
+	 * @param alph The given Alphabet for this AffineCipher
 	 */
 	public AffineCipher(Alphabet alph) {
 		this.alph = alph;
@@ -28,7 +30,9 @@ public class AffineCipher extends Cipher {
 	
 	
 	/**
-	 * @param msg
+	 * Encrypts a given message String using this AffineCipher and returns the encoded result 
+	 * @param msg The given message String to be encrypted
+	 * @return The encoded version of the given message String
 	 */
 	public String encrypt(String msg) {
 		StringBuilder msgSB = new StringBuilder(msg);
@@ -48,7 +52,9 @@ public class AffineCipher extends Cipher {
 
 	
 	/**
-	 * @param msg
+	 * Decrypts a given message String using this AffineCipher and returns the decoded result
+	 * @param msg The given message String to be decoded
+	 * @return The decoded version of the given message String
 	 */
 	public String decrypt(String msg) {
 		StringBuilder msgSB = new StringBuilder(msg);
@@ -68,7 +74,7 @@ public class AffineCipher extends Cipher {
 
 	
 	/**
-	 * 
+	 * Randomly generates the multiplicative parameter, a, using the given Alphabet size
 	 */
 	private void setA() {
 		Random rand = new Random();
@@ -79,7 +85,7 @@ public class AffineCipher extends Cipher {
 	
 	
 	/**
-	 * 
+	 * Randomly generates the additive parameter, b
 	 */
 	private void setB() {
 		Random rand = new Random();

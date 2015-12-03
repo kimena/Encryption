@@ -8,6 +8,10 @@ import matrix.matrixException.*;
 import ring.modInt.ModInt_M;
 import ring.modInt.Z_M;
 
+/**
+ * A class used for encrypting and decrypting messages using a Vigenere cipher
+ * @author Noah Kime
+ */
 public class VigenereCipher extends Cipher {
 
 	protected Z_M modA;
@@ -21,6 +25,7 @@ public class VigenereCipher extends Cipher {
 	private final String EXCEPTION_MESSAGE = "MESSAGE FAILED TO BE PROCESSED: ";
 	
 	/**
+	 * Creates a new VigenereCipher with random parameters over a given Alphabet
 	 * @param alph
 	 */
 	public VigenereCipher(Alphabet alph) {
@@ -35,8 +40,10 @@ public class VigenereCipher extends Cipher {
 	} //END VigenereCipher
 	
 	
-	/* (non-Javadoc)
-	 * @see cipher.Cipher#encrypt(java.lang.String)
+	/**
+	 * Encrypts a given message String using this VigenereCipher and returns the encoded result 
+	 * @param msg The given message String to be encrypted
+	 * @return The encoded version of the given message String
 	 */
 	public String encrypt(String msg) {
 		StringBuilder msgSB = new StringBuilder(msg);
@@ -68,8 +75,10 @@ public class VigenereCipher extends Cipher {
 	} //END encrypt
 
 	
-	/* (non-Javadoc)
-	 * @see cipher.Cipher#decrypt(java.lang.String)
+	/**
+	 * Decrypts a given message String using this VigenereCipher and returns the decoded result
+	 * @param msg The given message String to be decoded
+	 * @return The decoded version of the given message String
 	 */
 	public String decrypt(String msg) {
 		StringBuilder msgSB = new StringBuilder(msg);
@@ -103,7 +112,7 @@ public class VigenereCipher extends Cipher {
 
 	
 	/**
-	 * Sets a to a random nxn matrix with invertible ModInt_M down the diagonal
+	 * Randomly generates the multiplicative parameter, a, using the given Alphabet size
 	 */
 	protected void setA() {
 		try {
@@ -129,6 +138,9 @@ public class VigenereCipher extends Cipher {
 	} //END setA
 	
 	
+	/**
+	 * Randomly generates the additive parameter, b
+	 */
 	private void setB() {
 		Random rand = new Random();
 		
@@ -141,6 +153,11 @@ public class VigenereCipher extends Cipher {
 	} //END setB
 	
 	
+	/**
+	 * Fills and returns the text vector with characters from a given StringBuilder 
+	 * @param msgSB The given StringBuilder
+	 * @return Returns the text vector with characters from the given StringBuilder
+	 */
 	private Matrix<ModInt_M> fillVector(StringBuilder msgSB) {
 		Grid<ModInt_M> tempGrid = new Grid<ModInt_M>(cipherSize, 1);
 
@@ -152,6 +169,6 @@ public class VigenereCipher extends Cipher {
 		}
 		
 		return new Matrix<ModInt_M>(tempGrid);
-	}
+	} //END fillVector
 	
 } //END VigenereCipher
