@@ -4,7 +4,8 @@ import matrix.matrixException.InvalidDimException;
 import matrix.matrixException.OutOfBoundsException;
 import ring.Ring;
 
-/**A Class that defines the basic operation and characteristics of matrices
+/**
+ * A Class that defines the basic operation and characteristics of matrices
  * Entries in this matrix are of type T which must implement a Ring
  * @author Noah Kime
  * @param <T> The type of Ring Object that are this matrix's elements
@@ -17,7 +18,8 @@ public class Matrix<T extends Ring<T>> {
 	protected Grid<T> nums;
 	
 	
-	/**Constructs a matrix using a given Grid of Ring Objects
+	/**
+	 * Constructs a new Matrix using a given Grid of Ring Objects
 	 * @param nums A given Grid of Ring Objects
 	 */
 	public Matrix(Grid<T> nums) {
@@ -27,11 +29,12 @@ public class Matrix<T extends Ring<T>> {
 	} //END Matrix (constructor)
 	
 	
-	/**Returns the entry in the ith row and the jth column of this Matrix
+	/**
+	 * Returns the entry in the ith row and the jth column of this Matrix
 	 * @param i The index of the ith row
 	 * @param j The index of the jth column
-	 * @return The entry at (i,j)
-	 * @throws Exception 
+	 * @return The entry at position (i,j) of this Matrix
+	 * @throws OutOfBoundsException If i or j is an invalid index number 
 	 */
 	public T get(int i, int j) throws OutOfBoundsException {
 		if (i < m && i >= 0 && j < n && j >= 0)
@@ -41,7 +44,8 @@ public class Matrix<T extends Ring<T>> {
 	} //END get
 	
 	
-	/** Returns the number of rows in this Matrix
+	/**
+	 * Returns the number of rows in this Matrix
 	 * @return The number of rows in this Matrix
 	 */
 	public int getM() {
@@ -49,7 +53,8 @@ public class Matrix<T extends Ring<T>> {
 	} //END getM
 	
 	
-	/** Returns the number of columns in this Matrix
+	/**
+	 * Returns the number of columns in this Matrix
 	 * @return The number of columns in this Matrix
 	 */
 	public int getN() {
@@ -57,21 +62,23 @@ public class Matrix<T extends Ring<T>> {
 	} //END getN
 	
 	
-	/**Sets the entry in the ith row and the jth column of this Matrix
+	/**
+	 * Sets the entry in the ith row and the jth column of this Matrix
 	 * @param i The index of the ith row
 	 * @param j The index of the jth column
-	 * @param k The value for (i,j) to be set to
-	 * @throws Exception
+	 * @param k The value for entry (i,j) to be set to
+	 * @throws OutOfBoundsException If i or j is an invalid index number 
 	 */
-	public void set(int i, int j, T k) throws Exception {
+	public void set(int i, int j, T k) throws OutOfBoundsException {
 		if (i < n && i >= 0 && j < m && j >= 0)
 			nums.set(i,j,k);
 		else
-			throw new Exception();
+			throw new OutOfBoundsException();
 	} //END set
 	
 	
-	/**Copies the existing matrix into a new Matrix
+	/**
+	 * Copies the existing Matrix into a new Matrix
 	 * @return The new copy of this Matrix
 	 */
 	public Matrix<T> copy() {
@@ -79,7 +86,8 @@ public class Matrix<T extends Ring<T>> {
 	} //END copy
 	
 	
-	/**Returns a copy of the nums Grid
+	/**
+	 * Returns a copy of the nums Grid
 	 * @return A copy of the nums Grid
 	 */
 	protected Grid<T> copyGrid() {
@@ -92,33 +100,36 @@ public class Matrix<T extends Ring<T>> {
 	} //END copyGrid
 	
 	
-	/**Adds a given Matrix to this Matrix and returns the sum as
-	 * a new, separate Matrix
+	/**
+	 * Adds a given Matrix to this Matrix and returns the sum as a new Matrix
 	 * @param x The given Matrix to be added
 	 * @return The sum of this Matrix and the given Matrix
-	 * @throws Exception
+	 * @throws InvalidDimException Thrown if given Matrix does not have same dimensions as this Matrix
+	 * @throws OutOfBoundsException Thrown if add function fails due to invalid dimensions and indices
 	 */
 	public Matrix<T> addRet(Matrix<T> x) throws InvalidDimException, OutOfBoundsException {
 		return new Matrix<T>(add(x, this));
 	} //END addRet
 	
 	
-	/**Adds a given Matrix to this Matrix and sets this Matrix
-	 * to the resulting sum
+	/**
+	 * Adds a given Matrix to this Matrix and sets this Matrix to the resulting sum
 	 * @param x The given Matrix to be added
-	 * @throws Exception 
+	 * @throws InvalidDimException Thrown if given Matrix does not have same dimensions as this Matrix
+	 * @throws OutOfBoundsException Thrown if add function fails due to invalid dimensions and indices
 	 */
 	public void add(Matrix<T> x) throws InvalidDimException, OutOfBoundsException {
 		this.nums = add(x, this);
 	} //END add
 	
 	
-	/**Adds two given Matrices of corresponding dimensions and
-	 *  returns the sum.
+	/**
+	 * Adds two given Matrices of corresponding dimensions and returns the sum.
 	 * @param x A given Matrix to be added
 	 * @param y A given Matrix to be added
 	 * @return The sum of the two given Matrices
-	 * @throws Exception
+	 * @throws InvalidDimException Thrown if Matrices do not have same dimensions
+	 * @throws OutOfBoundsException Thrown if add fails due to invalid dimensions and indices
 	 */
 	private Grid<T> add(Matrix<T> x, Matrix<T> y) throws InvalidDimException, OutOfBoundsException {
 		if (x.m != y.m || x.n != y.n)
@@ -136,24 +147,23 @@ public class Matrix<T extends Ring<T>> {
 	} //END add
 	
 	
-	/**Multiplies the given Matrix on the left of this Matrix
-	 *  and returns the result
-	 * @param x The given Matrix to be multiplied on the
-	 *  left of this Matrix
-	 * @return The product of this Matrix with the given
-	 *  Matrix multiplied on the left
-	 * @throws Exception 
+	/**
+	 * Multiplies the given Matrix on the left of this Matrix and returns the result
+	 * @param x The given Matrix to be multiplied on the left of this Matrix
+	 * @return The product of this Matrix with the given Matrix multiplied on the left
+	 * @throws InvalidDimException Thrown if given Matrix does not have corresponding dimensions as this Matrix
+	 * @throws OutOfBoundsException Thrown if add function fails due to invalid dimensions and indices
 	 */
 	public Matrix<T> multLRet(Matrix<T> x) throws InvalidDimException, OutOfBoundsException {
 		return multRet(x, this);
 	} //END multLRet
 	
 	
-	/**Multiplies the given Matrix on the left of this Matrix
-	 *  and sets this Matrix to the resulting product
-	 * @param x The given Matrix to be multiplied on the
-	 *  left of this Matrix
-	 * @throws Exception 
+	/**
+	 * Multiplies the given Matrix on the left of this Matrix and sets this Matrix to the resulting product
+	 * @param x The given Matrix to be multiplied on the left of this Matrix
+	 * @throws InvalidDimException Thrown if given Matrix does not have corresponding dimensions as this Matrix
+	 * @throws OutOfBoundsException Thrown if add function fails due to invalid dimensions and indices
 	 */
 	public void multL(Matrix<T> x) throws InvalidDimException, OutOfBoundsException {
 		Grid<T> temp = mult(x, this);
@@ -164,24 +174,23 @@ public class Matrix<T extends Ring<T>> {
 	} //END multL
 	
 	
-	/**Multiplies the given Matrix on the right of this Matrix
-	 *  and returns the result
-	 * @param x The given Matrix to be multiplied on the
-	 *  right of this Matrix
-	 * @return The product of this Matrix with the given
-	 *  Matrix multiplied on the right
-	 * @throws Exception 
+	/**
+	 * Multiplies the given Matrix on the right of this Matrix and returns the result
+	 * @param x The given Matrix to be multiplied on the right of this Matrix
+	 * @return The product of this Matrix with the given Matrix multiplied on the right
+	 * @throws InvalidDimException Thrown if given Matrix does not have corresponding dimensions as this Matrix
+	 * @throws OutOfBoundsException Thrown if add function fails due to invalid dimensions and indices
 	 */
 	public Matrix<T> multRRet(Matrix<T> x) throws InvalidDimException, OutOfBoundsException {
 		return multRet(this, x);
 	} //END multRRet
 	
 	
-	/**Multiplies the given Matrix on the right of this Matrix
-	 *  and sets this Matrix to the resulting product
-	 * @param x The given Matrix to be multiplied on the
-	 *  right of this Matrix
-	 * @throws Exception 
+	/**
+	 * Multiplies the given Matrix on the right of this Matrix and sets this Matrix to the resulting product
+	 * @param x The given Matrix to be multiplied on the right of this Matrix
+	 * @throws InvalidDimException Thrown if given Matrix does not have corresponding dimensions as this Matrix
+	 * @throws OutOfBoundsException Thrown if add function fails due to invalid dimensions and indices
 	 */
 	public void multR(Matrix<T> x) throws InvalidDimException, OutOfBoundsException {
 		Grid<T> temp = mult(this, x);
@@ -192,11 +201,13 @@ public class Matrix<T extends Ring<T>> {
 	} //END multR
 	
 	
-	/**Multiplies two matrices x and y
+	/**
+	 * Multiplies two matrices x and y
 	 * @param x Given Matrix x to be multiplied on the left
 	 * @param y Given Matrix y to be multiplied on the right
 	 * @return The product of the matrices as a new Matrix
-	 * @throws Exception 
+	 * @throws InvalidDimException Thrown Matrices do not have corresponding dimensions
+	 * @throws OutOfBoundsException Thrown if add function fails due to invalid dimensions and indices
 	 */
 	private Matrix<T> multRet(Matrix<T> x, Matrix<T> y) throws InvalidDimException, OutOfBoundsException {
 		Grid<T> temp = mult(x,y);
@@ -204,11 +215,13 @@ public class Matrix<T extends Ring<T>> {
 	} //END multRet
 	
 	
-	/**Multiplies two matrices x and y and returns the resulting Matrix' array
+	/**
+	 * Multiplies two matrices x and y and returns the resulting Matrix' array
 	 * @param x Given Matrix x to be multiplied on the left
 	 * @param y Given Matrix y to be multiplied on the right
-	 * @return The array representation of the resulting Matrix
-	 * @throws Exception 
+	 * @return The Grid representation of the resulting Matrix
+	 * @throws InvalidDimException Thrown Matrices do not have corresponding dimensions
+	 * @throws OutOfBoundsException Thrown if add function fails due to invalid dimensions and indices
 	 */
 	private Grid<T> mult(Matrix<T> x, Matrix<T> y) throws InvalidDimException, OutOfBoundsException {
 		if (x.n != y.m)
@@ -228,7 +241,8 @@ public class Matrix<T extends Ring<T>> {
 	} //END mult
 	
 	
-	/**Multiplies this Matrix by a given scalar
+	/**
+	 * Multiplies this Matrix by a given scalar
 	 * @param scalar The given scalar to multiply this Matrix by
 	 */
 	public void mult(T scalar) {
@@ -240,7 +254,8 @@ public class Matrix<T extends Ring<T>> {
 	} //END mult
 	
 	
-	/**Multiplies this Matrix by a given scalar and returns the result
+	/**
+	 * Multiplies this Matrix by a given scalar and returns the result
 	 * @param scalar The given scalar to multiply this Matrix by
 	 * @return Returns the product of this Matrix and the given scalar
 	 */
@@ -257,8 +272,9 @@ public class Matrix<T extends Ring<T>> {
 	} //END multRet
 	
 	
-	/**Initializes a given Grid to have the additive identity in every position
-	 * @param grid A given Grid
+	/**
+	 * Initializes a given Grid to have the additive identity in every position
+	 * @param grid A given Grid to be initialized
 	 */
 	private void initializeGrid(Grid<T> grid) {
 		T temp = nums.get(0,0);
@@ -268,8 +284,10 @@ public class Matrix<T extends Ring<T>> {
 	} //END initializeGrid
 	
 	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
+	/**
+	 * Determines if this Matrix and a given Object are logically equivalent
+	 * @param o The given object to be compared to this Matrix
+	 * @return True if the given object and this Matrix are equivalent
 	 */
 	@Override
 	public boolean equals(Object o) {
@@ -300,8 +318,9 @@ public class Matrix<T extends Ring<T>> {
 	} //END equals
 	
 	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * Returns the String representation of this Matrix
+	 * @return The String representation of this Matrix
 	 */
 	@Override
 	public String toString() {

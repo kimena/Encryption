@@ -1,10 +1,10 @@
 package matrix;
 
 import ring.modInt.ModInt_M;
-
 import matrix.matrixException.*;
 
-/**A Class that performs modular arithmetic with matrices
+/**
+ * A Class that performs modular arithmetic with matrices
  * @author Noah Kime
  */
 public class GLn_Zm extends GLn<ModInt_M> {
@@ -12,10 +12,13 @@ public class GLn_Zm extends GLn<ModInt_M> {
 	protected GLn_Zm inverse;
 	
 	
-	/**Constructs a new GLn_Zm matrix using a given Grid
+	/**
+	 * Constructs a new GLn_Zm matrix using a given Grid
 	 * @param nums The given Grid for this GLn_Zm
-	 * @throws NoInverseException
-	 * @throws MatrixException
+	 * @throws InvalidDimException Thrown if given grid nums does not have equivalent
+	 * 	columns and rows
+	 * @throws InvalidDetException Thrown if given grid corresponds to a Singular (noninvertible)
+	 *  Matrix
 	 */
 	public GLn_Zm(Grid<ModInt_M> nums) throws InvalidDimException, InvalidDetException {
 		super(nums);
@@ -24,7 +27,8 @@ public class GLn_Zm extends GLn<ModInt_M> {
 	} //END GLn_Zm (constructor)
 	
 	
-	/**Constructs a new GLn_Zm matrix using a given Grid, a known determinate, and inverse
+	/**
+	 * Constructs a new GLn_Zm matrix using a given Grid, a known determinate, and inverse
 	 * @param nums The given Grid for this GLn_Zm
 	 * @param det The known determinate of this GLn_Zm
 	 * @param inv The inverse of this GLn_Zm
@@ -34,7 +38,8 @@ public class GLn_Zm extends GLn<ModInt_M> {
 	} //END GLn_Zm (constructor)
 	
 	
-	/**Returns the multiplicative inverse of this GLn_Zm
+	/**
+	 * Returns the multiplicative inverse of this GLn_Zm
 	 * @return The multiplicative inverse of this GLn_Zm
 	 */
 	@Override
@@ -43,7 +48,8 @@ public class GLn_Zm extends GLn<ModInt_M> {
 	} //END getInverse
 
 	
-	/**Returns an nxn identity matrix of ModInt_M integers
+	/**
+	 * Returns an nxn identity matrix of ModInt_M integers
 	 * @return An nxn identity matrix of ModInt_M integers
 	 */
 	@Override
@@ -59,7 +65,8 @@ public class GLn_Zm extends GLn<ModInt_M> {
 	} //END getIdentity
 	
 	
-	/**Returns an nxn grid for an identity matrix of ModInt_M integers
+	/**
+	 * Returns an nxn grid for an identity matrix of ModInt_M integers
 	 * @return An nxn grid for an identity matrix of ModInt_M integers
 	 */
 	@Override

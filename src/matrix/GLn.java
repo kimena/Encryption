@@ -4,7 +4,8 @@ import ring.Ring;
 
 import matrix.matrixException.*;
 
-/**A Class that defines nxn matrices with inverses and entries of type T
+/**
+ * A Class that defines nxn matrices with multiplicative inverses and entries of type T
  * @author Noah Kime
  * @param <T>
  */
@@ -14,10 +15,13 @@ public class GLn<T extends Ring<T>> extends Matrix<T> {
 	protected GLn<T> inv;
 	
 	
-	/**Constructs a new GLn matrix using a given Grid
+	/**
+	 * Constructs a new GLn matrix using a given Grid
 	 * @param nums The given Grid for this GLn_Zm
-	 * @throws NoInverseException
-	 * @throws MatrixException
+	 * @throws InvalidDimException Thrown if given grid nums does not have equivalent
+	 * 	columns and rows
+	 * @throws InvalidDetException Thrown if given grid corresponds to a Singular (noninvertible)
+	 *  Matrix
 	 */
 	public GLn(Grid<T> nums) throws InvalidDimException, InvalidDetException {
 		super(nums);
@@ -29,7 +33,8 @@ public class GLn<T extends Ring<T>> extends Matrix<T> {
 	} //END GLn_Zm (constructor)
 	
 	
-	/**Constructs a new GLn_Zm matrix using a given Grid, a known determinate, and inverse
+	/**
+	 * Constructs a new GLn_Zm matrix using a given Grid, a known determinate, and inverse
 	 * @param nums The given Grid for this GLn_Zm
 	 * @param det The known determinate of this GLn_Zm
 	 * @param inv The inverse of this GLn_Zm
@@ -42,7 +47,8 @@ public class GLn<T extends Ring<T>> extends Matrix<T> {
 	} //END GLn_Zm (constructor)
 	
 	
-	/**Returns the determinant of this GLn_Zm
+	/**
+	 * Returns the determinant of this GLn_Zm
 	 * @return The determinant of this GLn_Zm
 	 */
 	public T getDet() {
@@ -50,7 +56,8 @@ public class GLn<T extends Ring<T>> extends Matrix<T> {
 	} //END getDet
 	
 	
-	/**Returns the multiplicative inverse of this GLn_Zm
+	/**
+	 * Returns the multiplicative inverse of this GLn_Zm
 	 * @return The multiplicative inverse of this GLn_Zm
 	 */
 	public GLn<T> getInverse() {
@@ -58,8 +65,9 @@ public class GLn<T extends Ring<T>> extends Matrix<T> {
 	} //END getInverse
 
 	
-	/**Returns an nxn identity matrix of ModInt_M integers
-	 * @return An nxn identity matrix of ModInt_M integers
+	/**
+	 * Returns an nxn identity matrix
+	 * @return An nxn identity matrix
 	 */
 	public GLn<T> getIdentity() {
 		Grid<T> temp = this.getIdentityGrid();
@@ -73,8 +81,9 @@ public class GLn<T extends Ring<T>> extends Matrix<T> {
 	} //END getIdentity
 	
 	
-	/**Returns an nxn grid for an identity matrix of ModInt_M integers
-	 * @return An nxn grid for an identity matrix of ModInt_M integers
+	/**
+	 * Returns an nxn grid for an identity matrix
+	 * @return An nxn grid for an identity matrix
 	 */
 	protected Grid<T> getIdentityGrid() {
 		Grid<T> temp = new Grid<T>(n,n);
@@ -91,9 +100,9 @@ public class GLn<T extends Ring<T>> extends Matrix<T> {
 	} //END getIdentityGrid
 	
 	
-	/**Calculates the determinate and inverse of this GLn simultaneously
-	 * @throws NoInverseException  Throws NoInverseException if entries are not invertible
-	 * @throws InvalidDetException Throws InvalidDetException if given matrix is not invertible
+	/**
+	 * Calculates the determinate and inverse of this GLn simultaneously
+	 * @throws InvalidDetException Thrown if this GLn is not invertible
 	 */
 	protected void genDet() throws InvalidDetException {
 		//01 INITIALIZE TEMPORARY MEMORY
@@ -232,9 +241,10 @@ public class GLn<T extends Ring<T>> extends Matrix<T> {
 	
 	
 	/**
-	 * @param n
-	 * @param k
-	 * @return
+	 * Generates the first combination of k integers chosen from n integers
+	 * @param n The number of integers to choose from
+	 * @param k The number of integers to be chosen
+	 * @return The first combination i.e. {1,2,...,k} if k<=n
 	 */
 	private static int[] strtCombination(int n, int k) {
 		if (k > n) {
@@ -252,9 +262,11 @@ public class GLn<T extends Ring<T>> extends Matrix<T> {
 	
 	
 	/**
-	 * @param comb
-	 * @param n
-	 * @param k
+	 * Generates the next combination of k integers chosen from n integers given an
+	 * existing combination of k integers
+	 * @param comb A given combination of k integers
+	 * @param n The number of integers to choose from
+	 * @param k The number of integers to be chosen
 	 * @return
 	 */
 	private static int[] nextCombination(int[] comb, int n, int k) {
