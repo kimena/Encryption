@@ -2,7 +2,8 @@ package ring.modInt;
 
 import ring.Ring;
 
-/**A Class that implements a Ring and performs modular arithmetic
+/**
+ * A Class that implements a Ring and performs modular arithmetic
  * over the integers modulo m
  * @author Noah Kime
  */
@@ -13,7 +14,8 @@ public class ModInt_M implements Ring<ModInt_M> {
 	private int inv;
 
 	
-	/**Constructs an integer mod m
+	/**
+	 * Constructs an integer mod m
 	 * @param val The given value for this integer
 	 * @param m The given Z_M class with which to perform modular arithmetic 
 	 */
@@ -25,7 +27,8 @@ public class ModInt_M implements Ring<ModInt_M> {
 	} //END ModInt_M (constructor)
 	
 	
-	/**Constructs an integer mod m with a known inverse
+	/**
+	 * Constructs an integer mod m with a known inverse
 	 * @param val The given value for this integer
 	 * @param inv The known inverse for this integer 
 	 * @param m The given Z_M class with which to perform modular arithmetic 
@@ -37,7 +40,8 @@ public class ModInt_M implements Ring<ModInt_M> {
 	} //END ModInt_M (constructor)
 	
 	
-	/**Returns the sum of this integer and a given integer modulo m
+	/**
+	 * Returns the sum of this integer and a given integer modulo m
 	 * @param The given integer to be added with this integer
 	 * @return The sum of this integer and the given integer modulo m
 	 */
@@ -46,7 +50,8 @@ public class ModInt_M implements Ring<ModInt_M> {
 	} //END getAdd
 	
 	
-	/**Returns the additive inverse of this integer modulo m
+	/**
+	 * Returns the additive inverse of this integer modulo m
 	 * @return the additive inverse of this integer modulo m
 	 */
 	public ModInt_M getAddInverse() {
@@ -54,7 +59,8 @@ public class ModInt_M implements Ring<ModInt_M> {
 	} //END getAddInverse
 	
 	
-	/**Returns the additive identity of the integers modulo m
+	/**
+	 * Returns the additive identity of the integers modulo m
 	 * @return The additive inverse of the integers modulo m
 	 */
 	public ModInt_M getAddIdentity() {
@@ -62,7 +68,8 @@ public class ModInt_M implements Ring<ModInt_M> {
 	} //END getAddIdentity
 	
 	
-	/**Returns the product of this integer and a given integer modulo m
+	/**
+	 * Returns the product of this integer and a given integer modulo m
 	 * @param The given integer to be multiplied with this integer
 	 * @return The product of this integer and the given integer modulo m
 	 */
@@ -71,7 +78,8 @@ public class ModInt_M implements Ring<ModInt_M> {
 	} //END mult
 	
 	
-	/**Returns the multiplicative inverse of this integer modulo m and null if no inverse exists
+	/**
+	 * Returns the multiplicative inverse of this integer modulo m and null if no inverse exists
 	 * @return The multiplicative inverse of this integer modulo m and null if no inverse exists
 	 */
 	public ModInt_M getMultInverse() {
@@ -82,7 +90,8 @@ public class ModInt_M implements Ring<ModInt_M> {
 	} //END getMultInverse
 	
 
-	/**Returns the multiplicative identity of the integers modulo m
+	/**
+	 * Returns the multiplicative identity of the integers modulo m
 	 * @return The multiplicative inverse of the integers modulo m
 	 */
 	public ModInt_M getMultIdentity() {
@@ -90,7 +99,8 @@ public class ModInt_M implements Ring<ModInt_M> {
 	} //END getMultIdentity
 	
 	
-	/**Returns the integer value of this ModInt_M
+	/**
+	 * Returns the integer value of this ModInt_M
 	 * @return The integer value of this ModInt_M
 	 */
 	public int getVal() {
@@ -98,7 +108,8 @@ public class ModInt_M implements Ring<ModInt_M> {
 	} //END getVal
 	
 	
-	/**Returns this ModInt_M's Z_M helper class
+	/**
+	 * Returns this ModInt_M's Z_M helper class
 	 * @return This ModInt_M's Z_M helper class
 	 */
 	public Z_M getM() {
@@ -106,7 +117,8 @@ public class ModInt_M implements Ring<ModInt_M> {
 	} //END getM
 	
 	
-	/**Returns a copy of this ModInt_M
+	/**
+	 * Returns a copy of this ModInt_M
 	 * @return A copy of this ModInt_M
 	 */
 	public ModInt_M copy() {
@@ -114,7 +126,8 @@ public class ModInt_M implements Ring<ModInt_M> {
 	} //END copy
 	
 	
-	/**Determines whether this ModInt_M and a given object are equivalent
+	/**
+	 * Determines whether this ModInt_M and a given object are equivalent
 	 * @param o The given object to be compared with this
 	 * @return True if this ModInt_M and the given object are equivalent and false otherwise
 	 */
@@ -131,10 +144,11 @@ public class ModInt_M implements Ring<ModInt_M> {
 		}
 		
 		return false;
-	}
+	} //END equals
 	
 	
-	/**Returns the value of this ModInt_M represented as a String
+	/**
+	 * Returns the value of this ModInt_M represented as a String
 	 * @return The value of this ModInt_M represented as a String
 	 */
 	@Override

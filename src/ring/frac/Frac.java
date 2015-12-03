@@ -2,13 +2,17 @@ package ring.frac;
 
 import ring.Ring;
 
+/**
+ * @author Noah Kime
+ */
 public class Frac implements Ring<Frac>, Comparable<Frac> {
 	
 	private long p;
 	private long q;
 	
 	
-	/**Constructs a new Frac with numerator p and numerator q
+	/**
+	 * Constructs a new Frac with numerator p and numerator q
 	 * @param p The given numerator for this Frac
 	 * @param q The given denominator for this Frac
 	 */

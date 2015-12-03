@@ -2,7 +2,8 @@ package ring.modInt;
 
 import java.util.ArrayList;
 
-/**A helper Class used to assist in mathematics modulo m for given value of m
+/**
+ * A helper Class used to assist in mathematics modulo m for given value of m
  * @author Noah Kime
  */
 public class Z_M {
@@ -11,7 +12,8 @@ public class Z_M {
 	private ArrayList<Integer> multSet;
 	
 	
-	/**Constructs a Z_M to perform mathematics modulo a given integer
+	/**
+	 * Constructs a Z_M to perform mathematics modulo a given integer
 	 * @param m The given integer
 	 */
 	public Z_M(int m) {
@@ -20,7 +22,8 @@ public class Z_M {
 	} //END Z_M (constructor)
 	
 	
-	/**Returns the sum of two given integers
+	/**
+	 * Returns the sum of two given integers
 	 * @param x A given integer
 	 * @param y A given integer
 	 * @return The sum of two given integers
@@ -30,7 +33,8 @@ public class Z_M {
 	} //END add
 	
 	
-	/**Returns the additive inverse of a given integer
+	/**
+	 * Returns the additive inverse of a given integer
 	 * @param x The given integer
 	 * @return The additive inverse of the given integer
 	 */
@@ -39,7 +43,8 @@ public class Z_M {
 	} //END getAddInverse
 	
 	
-	/**Returns the additive identity, zero
+	/**
+	 * Returns the additive identity, zero
 	 * @return The additive identity, zero
 	 */
 	public int getAddIdentity() {
@@ -47,7 +52,8 @@ public class Z_M {
 	} //END getAddIdentity
 	
 	
-	/**Returns the product of two given integers modulo m
+	/**
+	 * Returns the product of two given integers modulo m
 	 * @param x A given integer
 	 * @param y A given integer
 	 * @return The product of the given integers modulo m
@@ -57,7 +63,8 @@ public class Z_M {
 	} //END mult
 	
 	
-	/**Returns the multiplicative inverse of a given integer modulo m or -1 if no inverse exists
+	/**
+	 * Returns the multiplicative inverse of a given integer modulo m or -1 if no inverse exists
 	 * @param x The given integer
 	 * @return The multiplicative inverse of a given integer modulo m or -1 if no inverse exists
 	 */
@@ -73,7 +80,8 @@ public class Z_M {
 	} //END getMultInverse
 	
 	
-	/**Returns the multiplicative identity, 1
+	/**
+	 * Returns the multiplicative identity, 1
 	 * @return The multiplicative identity, 1
 	 */
 	public int getMultIdentity() {
@@ -82,14 +90,16 @@ public class Z_M {
 	
 	
 	/**
-	 * @return
+	 * Returns m, the integer this Z_M mods by
+	 * @return m, the integer this Z_M mods by
 	 */
 	public int getM() {
 		return new Integer(m);
 	} //END getM
 	
 	
-	/**Determines whether two given integers are congruent modulo m
+	/**
+	 * Determines whether two given integers are congruent modulo m
 	 * @param x A given integer
 	 * @param y A given integer
 	 * @return True if the given integers are congruent modulo m and false otherwise
@@ -99,7 +109,8 @@ public class Z_M {
 	} //END equals
 	
 	
-	/**Determines whether this Z_M and a given Object are logically equivalent
+	/**
+	 * Determines whether this Z_M and a given Object are logically equivalent
 	 * @return True if this and the given Object are equivalent and false otherwise
 	 */
 	public boolean equals(Object o) {
@@ -114,7 +125,8 @@ public class Z_M {
 	} //END equals
 	
 	
-	/**Returns the smallest positive value of a given integer modulo m
+	/**
+	 * Returns the smallest positive value of a given integer modulo m
 	 * @param x The given integer
 	 * @return The smallest positive value of a given integer modulo m
 	 */
@@ -123,7 +135,8 @@ public class Z_M {
 	} //END modM
 	
 	
-	/**Recursively solves for the greatest common denominator of two given integers
+	/**
+	 * Recursively solves for the greatest common denominator of two given integers
 	 * Uses the Euclidean algorithm
 	 * @param a A given integer
 	 * @param b A given integer
@@ -134,7 +147,8 @@ public class Z_M {
 	} //END gcd
 	
 	
-	/**Returns the set of integers that form a Group under multiplication modulo m
+	/**
+	 * Returns the set of integers that form a Group under multiplication modulo m
 	 * @return The set of integers that form a Group under multiplication modulo m
 	 */
 	public ArrayList<Integer> getMultSet() {
@@ -143,7 +157,8 @@ public class Z_M {
 	} //END getMultSet
 	
 	
-	/**Generates the set of integers that form a Group under multiplication modulo m
+	/**
+	 * Generates the set of integers that form a Group under multiplication modulo m
 	 */
 	private ArrayList<Integer> genMultSet() {
 		ArrayList<Integer> multSet = new ArrayList<Integer>();
