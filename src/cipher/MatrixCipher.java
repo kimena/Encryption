@@ -31,8 +31,7 @@ public class MatrixCipher extends VigenereCipher {
 		catch (InvalidDimException|InvalidDetException e) {
 			e.printStackTrace();
 		}
-	}
-	
+	} //END setA
 	
 	
 	/**
