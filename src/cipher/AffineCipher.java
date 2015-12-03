@@ -15,8 +15,8 @@ public class AffineCipher extends Cipher {
 	private ModInt_M b;
 	
 	
-	/**
-	 * @param alph
+	/**Creates a random AffineCipher over a given Alphabet
+	 * @param alph The given Alphabet
 	 */
 	public AffineCipher(Alphabet alph) {
 		this.alph = alph;
