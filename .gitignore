@@ -14,3 +14,4 @@ hs_err_pid*
 
 # Temporary .dia Files
 *.dia~
+*.dia.autosave
