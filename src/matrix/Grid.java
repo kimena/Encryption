@@ -11,7 +11,6 @@ public class Grid<T> {
 		private int cols;
 		
 		private Cell<T> head;
-		private Cell<T> last;
 		
 		////////////////////////////////////////////////////////////
 		
@@ -142,15 +141,6 @@ public class Grid<T> {
 		
 		
 		/**
-		 * Returns the last Cell referenced
-		 * @return The last Cell referenced
-		 */
-		public T getLast() {
-			return last.getData();
-		} //END getLast
-		
-		
-		/**
 		 * Recursively returns the Cell a given number of positions from a given Cell
 		 * @param row The number of rows the desired Cell is down from the given Cell
 		 * @param col The number of columns the desired Cell is right from the given Cell
@@ -163,7 +153,6 @@ public class Grid<T> {
 			else if (col > 0)
 				return go(row, col-1, here.right());
 			else
-				this.last = here;
 				return here;
 		} //END go
 		
