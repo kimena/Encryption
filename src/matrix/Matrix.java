@@ -273,6 +273,24 @@ public class Matrix<T extends Ring<T>> {
 	
 	
 	/**
+	 * Returns the transpose of this matrix
+	 * @return The transpose of this matrix
+	 */
+	public Matrix<T> transpose() {	
+		return(new Matrix<T>(this.nums.transpose()));
+	} //END getTranspose
+	
+	
+	/**
+	 * Returns this Matrix as a Grid
+	 * @return This Matrix as a Grid
+	 */
+	public Grid<T> asGrid() {
+		return this.nums.copy();
+	} //END asGrid
+	
+	
+	/**
 	 * Initializes a given Grid to have the additive identity in every position
 	 * @param grid A given Grid to be initialized
 	 */

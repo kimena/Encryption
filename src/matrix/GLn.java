@@ -17,7 +17,7 @@ public class GLn<T extends Ring<T>> extends Matrix<T> {
 	
 	/**
 	 * Constructs a new GLn matrix using a given Grid
-	 * @param nums The given Grid for this GLn_Zm
+	 * @param nums The given Grid for this GLn
 	 * @throws InvalidDimException Thrown if given grid nums does not have equivalent
 	 * 	columns and rows
 	 * @throws InvalidDetException Thrown if given grid corresponds to a Singular (noninvertible)
@@ -34,10 +34,10 @@ public class GLn<T extends Ring<T>> extends Matrix<T> {
 	
 	
 	/**
-	 * Constructs a new GLn_Zm matrix using a given Grid, a known determinate, and inverse
-	 * @param nums The given Grid for this GLn_Zm
-	 * @param det The known determinate of this GLn_Zm
-	 * @param inv The inverse of this GLn_Zm
+	 * Constructs a new GLn matrix using a given Grid, a known determinate, and inverse
+	 * @param nums The given Grid for this GLn
+	 * @param det The known determinate of this GLn
+	 * @param inv The inverse of this GLn
 	 */
 	protected GLn(Grid<T> nums, T det, GLn<T> inv) {
 		super(nums);
@@ -48,8 +48,19 @@ public class GLn<T extends Ring<T>> extends Matrix<T> {
 	
 	
 	/**
-	 * Returns the determinant of this GLn_Zm
-	 * @return The determinant of this GLn_Zm
+	 * Returns the transpose of this GLn
+	 * @return The transpose of this GLn
+	 * @throws InvalidDimException Thrown if this GLn has invalid dimensions
+	 * @throws InvalidDetException Thrown if this GLn has an invalid determinant 
+	 */
+	public GLn<T> getTranspose() throws InvalidDimException, InvalidDetException {
+		return(new GLn<T>(this.nums.transpose()));
+	} //END getTranspose
+	
+	
+	/**
+	 * Returns the determinant of this GLn
+	 * @return The determinant of this GLn
 	 */
 	public T getDet() {
 		return det;
@@ -57,8 +68,8 @@ public class GLn<T extends Ring<T>> extends Matrix<T> {
 	
 	
 	/**
-	 * Returns the multiplicative inverse of this GLn_Zm
-	 * @return The multiplicative inverse of this GLn_Zm
+	 * Returns the multiplicative inverse of this GLn
+	 * @return The multiplicative inverse of this GLn
 	 */
 	public GLn<T> getInverse() {
 		return inv;

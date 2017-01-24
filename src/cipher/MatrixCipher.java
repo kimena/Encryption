@@ -27,8 +27,13 @@ public class MatrixCipher extends VigenereCipher {
 	 * Randomly generates the multiplicative parameter, a, using the given Alphabet size
 	 */
 	protected void setA() {
-		try { this.a = new GLn_Zm(getNonSingular()); }
-		catch (InvalidDimException|InvalidDetException e) {
+		try { 
+			GLn_Zm upper  = new GLn_Zm(getNonSingular());
+			GLn_Zm lower  = new GLn_Zm(getNonSingular()).getTranspose();
+			
+			this.a = new GLn_Zm(lower.multRRet(upper).asGrid());
+		}
+		catch (InvalidDimException|InvalidDetException|OutOfBoundsException e) {
 			e.printStackTrace();
 		}
 	} //END setA

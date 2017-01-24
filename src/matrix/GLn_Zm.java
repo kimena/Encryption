@@ -39,6 +39,17 @@ public class GLn_Zm extends GLn<ModInt_M> {
 	
 	
 	/**
+	 * Returns the transpose of this GLn_Zm
+	 * @return The Transpose of this GLn_Zm
+	 * @throws InvalidDimException Thrown if this GLn_Zm has invalid dimensions
+	 * @throws InvalidDetException Thrown if this GLn_Zm has an invalid determinant
+	 */
+	public GLn_Zm getTranspose() throws InvalidDimException, InvalidDetException {
+		return(new GLn_Zm(this.nums.transpose()));
+	} //END getTranspose
+	
+	
+	/**
 	 * Returns the multiplicative inverse of this GLn_Zm
 	 * @return The multiplicative inverse of this GLn_Zm
 	 */

@@ -1,6 +1,5 @@
 package cipher;
 
-
 /**
  * A class used for encrypting and decrypting messages
  * @author Noah Kime

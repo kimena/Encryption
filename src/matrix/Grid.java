@@ -1,11 +1,13 @@
 package matrix;
 
+import ring.Ring;
+
 /**
  * A Class that imitates a two-dimensional array of Objects 
  * @author Noah Kime
  * @param <T> The type of Object to be stored in this Grid
  */
-public class Grid<T> {
+public class Grid<T extends Ring<T>> {
 		
 		private int rows;
 		private int cols;
@@ -185,6 +187,38 @@ public class Grid<T> {
 		public int getCols() {
 			return cols;
 		} //END getRows
+		
+		
+		/**
+		 * Returns a copy of this Grid
+		 * @return A copy of this Grid
+		 */
+		public Grid<T> copy() {
+			Grid<T> temp = new Grid<T>(rows,cols);
+			
+			for (int i = 0; i < rows; i++) {
+				for (int j = 0; j < cols; j++) {
+					temp.set(i,j,this.get(i,j).copy());
+				}
+			}
+			
+			return temp;
+		} //END copy
+		
+		
+		/**
+		 * Returns the transpose of this Grid
+		 * @return The transpose of this Grid
+		 */
+		public Grid<T> transpose() {
+			Grid<T> tran = new Grid<T>(this.cols,this.rows);
+			for (int i = 0; i < rows; i++) {
+				for (int j = 0; j < cols; j++) {
+					tran.set(j,i,this.get(i,j).copy());
+				}
+			}
+			return(tran);
+		} //END transpose
 		
 		
 		/**
