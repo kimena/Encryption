@@ -30,6 +30,17 @@ public class Matrix<T extends Ring<T>> {
 	
 	
 	/**
+	 * Constructs an empty Matrix with default values
+	 */
+	protected Matrix() {
+		this.m = 0;
+		this.n = 0;
+		
+		this.nums = null;
+	} //END Matrix (constructor)
+
+	
+	/**
 	 * Returns the entry in the ith row and the jth column of this Matrix
 	 * @param i The index of the ith row
 	 * @param j The index of the jth column
@@ -228,7 +239,7 @@ public class Matrix<T extends Ring<T>> {
 			throw new InvalidDimException();
 		
 		Grid<T> temp = new Grid<T>(x.m, y.n);
-		this.initializeGrid(temp);
+		this.initializeGrid(temp,nums.get(0,0));
 		
 		for (int i = 0; i < x.m; i++) {
 			for (int j = 0; j < y.n; j++) {
@@ -294,11 +305,10 @@ public class Matrix<T extends Ring<T>> {
 	 * Initializes a given Grid to have the additive identity in every position
 	 * @param grid A given Grid to be initialized
 	 */
-	private void initializeGrid(Grid<T> grid) {
-		T temp = nums.get(0,0);
+	protected void initializeGrid(Grid<T> grid, T val) {
 		for (int i = 0; i < grid.getRows(); i++)
 			for (int j = 0; j < grid.getCols(); j++)
-				grid.set(i,j, temp.getAddIdentity());
+				grid.set(i,j, val.getAddIdentity());
 	} //END initializeGrid
 	
 	

@@ -34,6 +34,17 @@ public class GLn<T extends Ring<T>> extends Matrix<T> {
 	
 	
 	/**
+	 * Constructs an empty GLn with default values
+	 */
+	protected GLn() {
+		super();
+		
+		this.det = null;
+		this.inv = null;
+	} //END Matrix (constructor)
+	
+	
+	/**
 	 * Constructs a new GLn matrix using a given Grid, a known determinate, and inverse
 	 * @param nums The given Grid for this GLn
 	 * @param det The known determinate of this GLn
