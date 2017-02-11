@@ -304,6 +304,7 @@ public class Matrix<T extends Ring<T>> {
 	/**
 	 * Initializes a given Grid to have the additive identity in every position
 	 * @param grid A given Grid to be initialized
+	 * @param val A given T from which to get the additive identity
 	 */
 	protected void initializeGrid(Grid<T> grid, T val) {
 		for (int i = 0; i < grid.getRows(); i++)
